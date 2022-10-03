@@ -36,9 +36,9 @@ long long f1()
 long long f2()
 {
     auto future1= std::async([]{return std::inner_product(&v1[0],            &v1[v1.size()/4],  &v2[0],0LL);});
-    auto future2= std::async([]{return std::inner_product(&v1[v1.size()/4],  &v1[v1.size()/2],  &v2[v1.size()/4],0LL);});
-    auto future3= std::async([]{return std::inner_product(&v1[v1.size()/2],  &v1[v1.size()*3/4],&v2[v1.size()/2],0LL);});
-    auto future4= std::async([]{return std::inner_product(&v1[v1.size()*3/4],&v1[v1.size()],    &v2[v1.size()*3/4],0LL);});
+    auto future2= std::async([]{return std::inner_product(&v1[v1.size()/4],  &v1[v1.size()/2],  &v2[v2.size()/4],0LL);});
+    auto future3= std::async([]{return std::inner_product(&v1[v1.size()/2],  &v1[v1.size()*3/4],&v2[v2.size()/2],0LL);});
+    auto future4= std::async([]{return std::inner_product(&v1[v1.size()*3/4],&v1[v1.size()],    &v2[v2.size()*3/4],0LL);});
 
     return future1.get() + future2.get() + future3.get() + future4.get();
 }
