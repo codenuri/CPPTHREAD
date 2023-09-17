@@ -32,7 +32,8 @@ int main()
     std::this_thread::sleep_for(2s);
     std::cout << "\n main \n";
     //sem.release();
-    sem.release(2);
+    sem.release(2);  // 단, 이경우 반드시 update값(2) <= max() - counter 이어야 합니다.
+                    // 최대값 보다 커질경우 undefined 입니다.
 
     t1.join();    t2.join();
     t3.join();    t4.join();
