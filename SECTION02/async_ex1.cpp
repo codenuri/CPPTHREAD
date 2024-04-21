@@ -43,20 +43,23 @@ long long f2()
 
     auto future1 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
 
-    std::advance(v1_start, bsize);
+    v1_start = v1_end;
+
     std::advance(v1_end, bsize);
     std::advance(v2_start, bsize);
 
     auto future2 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
-    std::advance(v1_start, bsize);
+    
+    v1_start = v1_end;
     std::advance(v1_end, bsize);
     std::advance(v2_start, bsize);
     
     auto future3 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
     
-    std::advance(v1_start, bsize);   
+    v1_start = v1_end;
+    v1_end   = v1.end();
     std::advance(v2_start, bsize);
-    v1_end = v1.end();
+    
 
     auto future4 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
 
