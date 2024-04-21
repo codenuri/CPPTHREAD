@@ -7,7 +7,7 @@
 #include <numeric>
 #include <execution>
 
-static const int NUM = 10000000; // 1억
+static const int NUM = 10000000; 
 
 std::vector<int> v1, v2;
 
@@ -54,9 +54,10 @@ long long f2()
     
     auto future3 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
     
-    std::advance(v1_start, bsize);
-    std::advance(v1_end, bsize);
+    std::advance(v1_start, bsize);   
     std::advance(v2_start, bsize);
+    v1_end = v1.end();
+
     auto future4 = std::async([v1_start, v1_end, v2_start] {return std::inner_product(v1_start, v1_end, v2_start, 0LL); });
 
     return future1.get() + future2.get() + future3.get() + future4.get();
